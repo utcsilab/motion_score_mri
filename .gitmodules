@@ -1,0 +1,3 @@
+[submodule "Nufft_Torch"]
+	path = Nufft_Torch
+	url = git@github.com:utcsilab/Nufft_Torch
