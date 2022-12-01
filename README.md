@@ -7,7 +7,7 @@ Checkout code with submodules:
 git clone --recursive https://github.com/utcsilab/motion_score_mri
 ```
 
-To familiarize yourself with the basics operators found in this repo please go through function_introduction.ipynb
+To familiarize yourself with the operators found in this repo please go through function_introduction.ipynb
 
 ## Citations
 
