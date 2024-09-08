@@ -43,6 +43,17 @@ class NMSELoss(nn.Module):
         
         return error_norm / self_norm
 
+class NRMSELoss(nn.Module):
+    def __init__(self):
+        super().__init__()
+        pass
+    
+    def forward(self, X: torch.Tensor, Y: torch.Tensor):
+        error_norm = torch.norm(X - Y)
+        self_norm  = torch.norm(X)
+        
+        return error_norm / self_norm
+
 # From fMRI
 class SSIMLoss(nn.Module):
     """

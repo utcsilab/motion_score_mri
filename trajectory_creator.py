@@ -24,7 +24,43 @@ def prop2D_traj_gen(TRs, ETL, N_RO):
 
     return np.transpose(np.asarray(full_traj), (0,-1,-2))[:,:,0:2]
 
+#trajectory generator for Cartesian FSE
 
+def ACS_Cart2D_traj_gen(TRs, ETL, N_RO, R, ro_dir = 'y', ordering='ACS_random', acs_perc=0.06):
+        
+    if ordering =='ACS_random':
+        N_PE = TRs*ETL
+        all_pe = np.arange(N_PE)
+        base_traj = bart(1, 'traj -x '+str(ETL*TRs)+' -y '+str(N_RO)).real[...]
+        acs_total = int(acs_perc*N_PE)
+        acs_start = N_PE//2 - int(acs_perc*N_PE/2)
+        acs_end = N_PE//2 + int(acs_perc*N_PE/2)
+        acs_lines = np.arange(acs_start, acs_end)
+        ACS_traj = base_traj[:,acs_lines,:]
+        rem_lines = N_PE//R - acs_lines.shape[0]
+        all_outer_lines = np.delete(all_pe, acs_lines)
+        selected_outer = np.random.permutation(all_outer_lines)[0:rem_lines]
+        outer_traj = base_traj[:,selected_outer,:]
+        accel_TRs = TRs//R
+
+        out_traj = np.zeros((3, accel_TRs, N_RO, ETL))
+
+
+        cat_traj = np.concatenate((ACS_traj,outer_traj), axis=1)
+
+
+        random_idx = np.random.permutation(np.arange(cat_traj.shape[1]))
+
+        for i in range(TRs//R):
+            # print(i)
+            idxs=random_idx[i*ETL:(i+1)*ETL]
+            # print(idxs)
+            out_traj[:,i,:,:] = np.transpose(cat_traj[:,idxs,:], (0,2,1))
+            
+            
+
+
+    return np.transpose(out_traj.reshape(3,accel_TRs, ETL*N_RO), (-2,-1,0))[...,0:2]
 
 #trajectory generator for Cartesian FSE
 

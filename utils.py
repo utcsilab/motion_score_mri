@@ -11,7 +11,7 @@ import torch.fft as torch_fft
 import torch.nn as nn
 
 import numpy as np
-import sigpy as sp
+# import sigpy as sp
 
 def normalize_np(gen_img, estimated_mvue):
     '''
@@ -54,6 +54,11 @@ def fft(x):
     x = torch_fft.fft2(x, dim=(-2, -1), norm='ortho')
     x = torch_fft.ifftshift(x, dim=(-2, -1))
     return x
+
+def nrmse(x,y):
+    num = torch.norm(x-y)
+    den = torch.norm(x)
+    return num/den
 
 def get_mvue(kspace, s_maps):
     ''' Get mvue estimate from coil measurements '''
