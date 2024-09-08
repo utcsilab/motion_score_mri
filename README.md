@@ -1,5 +1,5 @@
 # motion_score_mri
-Accelerated motion correction with score-based generative models
+code accompanying MRM versino of "Accelerated motion correction with score-based generative models"
 
 ### Getting Started
 Checkout code with submodules:
@@ -7,7 +7,10 @@ Checkout code with submodules:
 git clone --recursive https://github.com/utcsilab/motion_score_mri
 ```
 
-To familiarize yourself with the operators found in this repo please go through function_introduction.ipynb
+To familiarize yourself with the operators found in this repo please go through introduction.ipynb
+
+## Test data and Trained Models
+The trained models and test data can be downloaded from the following link:
 
 ## Citations
 
@@ -28,24 +31,6 @@ If you find this repository useful, please consider citing the following papers:
 }
 ```
 
-Our code uses prior work from the following papers, which must
-be cited:
-```
-@inproceedings{song2019generative,
-  title={Generative modeling by estimating gradients of the data distribution},
-  author={Song, Yang and Ermon, Stefano},
-  booktitle={Advances in Neural Information Processing Systems},
-  pages={11918--11930},
-  year={2019}
-}
-
-@article{song2020improved,
-  title={Improved Techniques for Training Score-Based Generative Models},
-  author={Song, Yang and Ermon, Stefano},
-  booktitle={Advances in Neural Information Processing Systems},
-  year={2020}
-}
-```
 
 We use data from the NYU fastMRI dataset, which must also be cited:
 ```
